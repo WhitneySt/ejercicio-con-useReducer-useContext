@@ -3,15 +3,21 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import Details from "../pages/Details";
 import movieReducer, { initialMovies } from "../reducers/movieReducer";
+import selectedMovieReducer, { initialSelectedMovie } from "../reducers/selectedmovieReducer";
 
 export const AppContext = createContext({});
 
 const Router = () => {
   const [movies, moviesDispatch] = useReducer(movieReducer, initialMovies);
+  const [selectedMovies, selectedMoviesDispatch] = useReducer(
+    selectedMovieReducer,
+    initialSelectedMovie
+  );
   
   const globalStates = {
-    userLogged:{},
+    userLogged: {},
     movies: { movies, moviesDispatch },
+    movie: { selectedMovies, selectedMoviesDispatch },
   };
 
   return (
